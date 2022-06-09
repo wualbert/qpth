@@ -19,7 +19,7 @@ def forward_single_np(Q, p, G, h, A, b):
     prob = cp.Problem(obj, cons)
     prob.solve()  # solver=cp.SCS, max_iters=5000, verbose=False)
     # prob.solve(solver=cp.SCS, max_iters=10000, verbose=True)
-    assert('optimal' in prob.status)
+    # assert('optimal' in prob.status)
     zhat = np.array(z_.value).ravel()
     nu = np.array(eqCon.dual_value).ravel() if eqCon is not None else None
     if ineqCon is not None:
