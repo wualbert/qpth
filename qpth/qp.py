@@ -106,7 +106,8 @@ def QPFunction(eps=1e-12, verbose=0, notImprovedLim=3,
                     vals[i], zhati, nui, lami, si = solvers.cvxpy.forward_single_np(
                         *[x.cpu().numpy() if x is not None else None
                         for x in (Q[i], p[i], G[i], h[i], Ai, bi)])
-                    # if zhati[0] is None:
+                    if zhati[0] is None:
+                        return None
                     #     import IPython, sys; IPython.embed(); sys.exit(-1)
                     zhats[i] = torch.Tensor(zhati)
                     lams[i] = torch.Tensor(lami)
